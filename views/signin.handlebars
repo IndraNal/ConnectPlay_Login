@@ -2,6 +2,12 @@
 
 <h2 id="signIntitle">sign in</h2>
 <div class="container" id="signin">
+   {{#if message}}
+<div class="error">
+  <span font-weight= "bold" style="color: red ;font-weight:bold; font-size:30px;">{{message}}</span>
+</div>
+{{/if}}
+
    <form name="signin" method="post" action="signin">
       <div class="form-group">
          <label for="email">Email Address</label>

@@ -2,7 +2,7 @@
 	"development": {
 		"username": "root",
 		"password": "Sahana123$",
-		"database": "connect_play",
+		"database": "connect_play_login",
 		"host": "127.0.0.1",
 		"port": 3306,
 		"dialect": "mysql"
@@ -10,7 +10,7 @@
 	"test": {
 		"username": "root",
 		"password": "Sahana123$",
-		"database": "connect_play",
+		"database": "connect_play_login",
 		"host": "127.0.0.1",
 		"dialect": "mysql"
 	},

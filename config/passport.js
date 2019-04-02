@@ -56,8 +56,10 @@ module.exports = function (passport, user) {
       User.findOne({ where: { email: email } }).then(function (user) {
 
         if (user) {
-          return done(null, false, { message: 'That email is already taken' });
-        }
+          console.log('message', 'That email is already taken.');
+          //return done(null, false, { message: 'That email is already taken' });
+          return done(null, false, req.flash('lmessage', 'That email is already taken.'));
+                 }
 
         else {
           var userPassword = generateHash(password);
@@ -82,7 +84,7 @@ module.exports = function (passport, user) {
               }
               User.create(data).then(function (newUser, created) {
                 if (!newUser) {
-                  console.log("not a new user")
+                
                   return done(null, false);
                 }
                 if (newUser) {
@@ -96,11 +98,7 @@ module.exports = function (passport, user) {
         }
 
       });
-
-
-
     }
-
   ));
 
   //local-signin
@@ -108,17 +106,13 @@ module.exports = function (passport, user) {
   passport.use('local-signin', new LocalStrategy(
 
     {
-
       // by default, local strategy uses username and password, we will override with email
       usernameField: 'email',
       passwordField: 'password',
       passReqToCallback: true // allows us to pass back the entire request to the callback
     },
-
     function (req, email, password, done) {
-
       var User = user;
-
       var isValidPassword = function (userpass, password) {
         return bCrypt.compareSync(password, userpass);
       }
@@ -126,13 +120,13 @@ module.exports = function (passport, user) {
       User.findOne({ where: { email: email } }).then(function (user) {
         console.log(user);
         if (!user) {
-          return done(null, false, { message: 'Email does not exist' });
-        }
+                console.log("no user found");
+        return done(null, false, req.flash('message', 'No user found.')); 
+               }
 
         if (!isValidPassword(user.password, password)) {
-
-          return done(null, false, { message: 'Incorrect password.' });
-
+              
+         return done(null, false, req.flash('message', 'Oops! Wrong password.')); 
         }
 
         var userinfo = user.get();
@@ -140,12 +134,8 @@ module.exports = function (passport, user) {
         return done(null, userinfo);
 
       }).catch(function (err) {
-
         console.log("Error:", err);
-
-        return done(null, false, { message: 'Something went wrong with your Signin' });
-
-
+       return done(null, false, req.flash('message', 'Something went wrong with your Signin')); 
       });
 
     }

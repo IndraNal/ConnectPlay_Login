@@ -8,8 +8,8 @@
   {{/each}}
 </div> --}}
 
-{{#if message}}
-<div class="alert alert-danger">{{message}}</div>
+{{#if errors}}
+    <div class="alert alert-danger">{{error}}</div>
 {{/if}}
 
 {{!-- {{#if sessionFlash.message}}

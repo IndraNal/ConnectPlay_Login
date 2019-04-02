@@ -8,8 +8,9 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
-var env = require('dotenv').config();
+require('dotenv').config();
 var exphbs = require("express-handlebars");
+var cookieParser = require('cookie-parser');
 var PORT = process.env.PORT || 8000;
 
 //For BodyParser
@@ -21,8 +22,9 @@ app.use(bodyParser.json());
 // For passport
 app.use(session({
   secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }
 }));
 
 
@@ -34,7 +36,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 app.set('views', './views')
 
-
+//app.set('trust proxy', '127.0.0.1');
 
 
 
@@ -44,9 +46,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Express Messages Middleware
-app.use(require('connect-flash')());
+app.use(flash());
 app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
+  res.locals.message = req.flash('message');
+  res.locals.lmessage = req.flash('lmessage');
+  //res.locals.lmessage = req.flash('lmessage');
   next();
 });
 
@@ -71,7 +75,8 @@ app.use(expressValidator({
 // Passport Config
 require('./config/passport')(passport, db.User);
 
-var users = require('./routes/users.js')(app, passport);
+//routes
+require('./routes/users.js')(app, passport);
 
 
 db.sequelize.sync().then(function () {

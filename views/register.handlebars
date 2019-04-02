@@ -1,9 +1,13 @@
-
 <h3>Sign Up Form</h3>
 <br />
 <div class="container" id="formText">
-  <form id="signup" name="signup" method="post" action="/register">
 
+  {{#if lmessage}}
+  <div class="error">
+    <span font-weight="bold" style="color: red ;font-weight:bold; font-size:30px;">{{lmessage}}</span>
+  </div>
+  {{/if}}
+  <form id="signup" name="signup" method="post" action="/register">
     <div class="form-group col-md-6">
       <label for="firstname"> First Name</label>
       <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name" required>
@@ -34,14 +38,14 @@
       <label for="Address"> Address </label>
       <input type="text" class="form-control" name="address" id="address" placeholder="Address" required>
     </div>
-    <div class="form-row">
+
       <div class="form-group col-md-6">
         <label for="city">City</label>
         <input type="text" class="form-control" name="city" id="city">
       </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-6">
         <label for="state">State</label>
-        <select id="state" name="state">
+        <select id="state" name="state" class="form-control">
           <option value="AL">Alabama</option>
           <option value="AK">Alaska</option>
           <option value="AZ">Arizona</option>
@@ -95,11 +99,12 @@
           <option value="WY">Wyoming</option>
         </select>
       </div>
-      <div class="form-group col-md-2">
-        <label for="zip">Zipcode</label>
-        <input type="number" class="form-control" id="zip" name="zip">
+      <div class="form-group col-md-6">
+        <label for="zip">Zip</label>
+        <input type="number" class="form-control" name="zip" id="zip">
       </div>
-    </div>
+  
+
     <button type="submit" class="btn btn-primary">Sign in</button>
   </form>
 </div>
