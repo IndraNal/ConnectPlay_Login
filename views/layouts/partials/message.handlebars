@@ -1,0 +1,38 @@
+{{!-- <div class='messages'>
+  {{#each messages}}
+  <div class="{{key}}">
+    {{#each this}}
+    <div class="{{this}} message"></div>
+    {{/each}}
+  </div>
+  {{/each}}
+</div> --}}
+
+{{#if message}}
+<div class="alert alert-danger">{{message}}</div>
+{{/if}}
+
+{{!-- {{#if sessionFlash.message}}
+<div id="flash-messages" class="container">
+  {{#contains sessionFlash.type "info"}}
+  <div class="alert alert-info">
+    {{{sessionFlash.message}}}
+  </div>
+  {{/contains}}
+  {{#contains sessionFlash.type "success"}}
+  <div class="alert alert-success">
+    {{{sessionFlash.message}}}
+  </div>
+  {{/contains}}
+  {{#contains sessionFlash.type "warning"}}
+  <div class="alert alert-warning">
+    {{{sessionFlash.message}}}
+  </div>
+  {{/contains}}
+  {{#contains sessionFlash.type "error"}}
+  <div class="alert alert-danger">
+    {{{sessionFlash.message}}}
+  </div>
+  {{/contains}}
+</div>
+{{/if}} --}}
