@@ -36,8 +36,6 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 app.set('views', './views')
 
-//app.set('trust proxy', '127.0.0.1');
-
 
 
 // Set Public Folder
@@ -50,7 +48,6 @@ app.use(flash());
 app.use(function (req, res, next) {
   res.locals.message = req.flash('message');
   res.locals.lmessage = req.flash('lmessage');
-  //res.locals.lmessage = req.flash('lmessage');
   next();
 });
 

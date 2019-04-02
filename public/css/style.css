@@ -44,6 +44,29 @@ body {
 	opacity: 0.85;
 	padding: 20px;
 }
+
+#formText label{
+
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+
+}
+
+#signin label{
+
+ font-size: 15px;
+  font-weight: bold;
+  color: black;
+
+
+}
+
+#state  {
+  border: none !important;
+  box-shadow: none;
+}
+
 footer{
   text-align: center;
   color: azure;
